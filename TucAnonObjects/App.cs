@@ -45,8 +45,11 @@
 
     public void Run()
     {
+        // kommentar
         var l = new Linq2();
+        int i;
         l.Run();
+        i = 99;
         Lab1();
     }
 
