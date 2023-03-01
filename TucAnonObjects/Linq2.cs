@@ -1,4 +1,6 @@
-﻿public class Linq2
+﻿using static Linq2;
+
+public class Linq2
 {
     public void Uppercase()
     {
@@ -33,6 +35,12 @@
         public string Bank { get; set; }
     }
 
+    public class CustomerWithCalculatedEur
+    {
+        public string Name { get; set; }
+        public double Euros { get; set; }
+    }
+
     public void Customers()
     {
         var customers = new List<Customer>()
@@ -48,6 +56,33 @@
             new Customer() { Name = "Tina Fey", Balance = 1000000.00, Bank = "CITI" },
             new Customer() { Name = "Sid Brown", Balance = 49582.68, Bank = "CITI" }
         };
+        var b = customers.Where(e => e.Name.StartsWith("B")).ToList();
+        //SELECT NAME, Balance/10 för alla som är i "CITI"
+        var ll = customers.Where(customer => customer.Bank == "CITI")
+            .Select(customer => new CustomerWithCalculatedEur
+            {
+                Name = customer.Name,
+                Euros = customer.Balance/10,
+            }).ToList();
+
+        var c = customers.Where(e=>e.Bank == "CITI")
+                .Select(e=>e.Name).ToList();
+
+        var c2 = customers.Where(e => e.Bank == "CITI")
+            .Select(e => e.Balance).ToList();
+
+
+
+
+
+
+
+
+
+
+
+
+
         var list = customers.Select(c => new
         {
             Name = c.Name.Split(' ',StringSplitOptions.RemoveEmptyEntries).Last(),
@@ -55,9 +90,48 @@
         });
     }
 
+    public class Student
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
 
     public void Run()
     {
+        Customers();
+        var st = new Student();
+        st.Id = 2;
+        st.FirstName = "dassda";
+        st.LastName = "423234";
+
+        var st2 = new Student
+        {
+            FirstName = "asdasdas",
+            Id = 12,
+            LastName = "2331"
+        };
+
+        var student = new
+        {
+            StudentId = 1, 
+            FirstName = "ames", 
+            LastName = "Bond" ,
+            Grade="G"
+        };
+        var student2 = new
+        {
+            Sid = 12,
+            FirstName = "123231",
+
+        };
+        if (student.LastName == "Bond")
+        {
+            Console.WriteLine("asd");
+            
+        }
+
+
         Uppercase();
     }
 }
