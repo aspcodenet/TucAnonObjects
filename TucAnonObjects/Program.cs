@@ -1,2 +1,2 @@
 ﻿var app = new App();
-app.Run();
+app.Run2();
