@@ -3,7 +3,7 @@
     public void Uppercase()
     {
         var s = "this IS a STRING of course";
-        var uppercases = s.Split(" ", StringSplitOptions.None)
+        var uppercases = s.Split(" ", StringSplitOptions.RemoveEmptyEntries)
             .Where(e => e == e.ToUpper());
         foreach (var uppercase in uppercases)
             Console.WriteLine(uppercase);
@@ -50,7 +50,7 @@
         };
         var list = customers.Select(c => new
         {
-            Name = c.Name.Split(' ',StringSplitOptions.None).Last(),
+            Name = c.Name.Split(' ',StringSplitOptions.RemoveEmptyEntries).Last(),
             MoneyToMillion = c.Balance > 1000000 ? 0 : 1000000-c.Balance,
         });
     }
